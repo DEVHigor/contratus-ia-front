@@ -7,7 +7,14 @@
   const dispatch = createEventDispatcher();
   
   function handleSubmit() {
-    dispatch('search', value);
+    if (value.trim()) {
+      dispatch('search', value);
+    }
+  }
+  
+  function handleInput(event: Event) {
+    const target = event.target as HTMLInputElement;
+    value = target.value;
   }
 </script>
 
@@ -16,6 +23,7 @@
     <input
       type="text"
       bind:value
+      on:input={handleInput}
       placeholder={placeholder}
       class="input input-bordered join-item w-full"
     />

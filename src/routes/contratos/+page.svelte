@@ -15,13 +15,17 @@
   let useLLM = false;
   let llmResponse: any = null;
   
+  let lastQuery = '';
+  
   // Atualiza a query com base nos parâmetros da URL
   $: {
     const urlQuery = $page.url.searchParams.get('q');
-    if (urlQuery) {
+    if (urlQuery && urlQuery !== lastQuery) {
       searchQuery = urlQuery;
+      lastQuery = urlQuery;
       performSearch(searchQuery);
-    } else {
+    } else if (!urlQuery && lastQuery) {
+      lastQuery = '';
       loadContratos();
     }
   }
@@ -81,13 +85,18 @@
   
   function handleSearch(event: CustomEvent<string>) {
     const query = event.detail;
-    if (query) {
-      // Atualiza a URL com a query
+    if (query && query.trim()) {
+      lastQuery = query;
       const url = new URL(window.location.href);
       url.searchParams.set('q', query);
       history.pushState({}, '', url);
-      
       performSearch(query);
+    } else {
+      lastQuery = '';
+      const url = new URL(window.location.href);
+      url.searchParams.delete('q');
+      history.pushState({}, '', url);
+      loadContratos();
     }
   }
   
