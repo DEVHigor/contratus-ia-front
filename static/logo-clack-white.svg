@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 100" fill="none">
+  <text x="10" y="70" font-family="Arial, sans-serif" font-size="60" font-weight="bold" fill="#FFFFFF">
+    CLACK
+  </text>
+  <text x="10" y="95" font-family="Arial, sans-serif" font-size="16" fill="#FFFFFF">
+    AI 4 BUSINESS
+  </text>
+  <path d="M 270 20 L 300 50 L 270 80" stroke="#FFFFFF" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
